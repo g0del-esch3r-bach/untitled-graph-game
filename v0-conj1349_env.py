@@ -184,7 +184,7 @@ class conj1349env(gym.Env):
         #    nx.draw_networkx_edges(graph, pos, edgelist=[(u, v)], edge_color='red', width=2.0)
         #else:
         #    nx.draw_networkx_edges(graph, pos, edgelist=[(u, v)], edge_color='red', style='dashed', width=2.0)
-        plt.title("State of the Graph")
+        plt.title("Current Graph")
         canvas.draw()
 
 
