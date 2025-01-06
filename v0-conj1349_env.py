@@ -1,12 +1,20 @@
 from enum import Enum
 import gymnasium as gym # type: ignore
 from gymnasium import spaces # type: ignore
+from gymnasium.envs.registration import register
+from gymnasium.utils.env_checker import check_env
 import pygame # type: ignore
 import math
 import networkx as nx # type: ignore
 import numpy as np # type: ignore
 import matplotlib.pyplot as plt #type: ignore
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg #type: ignore
+
+register(
+    id = "conj1349-v0",
+    entry_point = "v0-conj1349_env:conj1349env",
+)
+
 
 N = 5
 
