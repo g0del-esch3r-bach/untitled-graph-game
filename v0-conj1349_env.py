@@ -251,3 +251,9 @@ class conj1349env(gym.Env):
             pygame.display.quit()
             pygame.quit()
 """
+
+if __name__ == "__main__":
+    env = gym.make('conj1349-v0', render_mode = 'human')
+    print("begin checking stuff")
+    check_env(env.unwrapped)
+    print("end checking stuff")
