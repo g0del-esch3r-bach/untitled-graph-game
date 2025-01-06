@@ -126,7 +126,7 @@ class conj1349env(gym.Env):
 
         terminated = (self._agent_location == math.floor(0.5 * nodes * (nodes - 1)) - 1)
 
-        graph = nx.from_numpy_matrix(self._matrix_location)
+        graph = nx.from_numpy_array(self._matrix_location)
 
         if nx.is_connected(graph):
             alpha = 0.99*(nodes+1)/(nodes+4)
@@ -181,7 +181,7 @@ class conj1349env(gym.Env):
         #    self.window_size / self.size
         #)  # The size of a single grid square in pixels
 
-        graph = nx.from_numpy_matrix(self._matrix_location)
+        graph = nx.from_numpy_array(self._matrix_location)
 
         plt.clf()
         pos = nx.circular_layout(graph)
