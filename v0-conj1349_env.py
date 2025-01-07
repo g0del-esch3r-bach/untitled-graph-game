@@ -113,11 +113,12 @@ class conj1349env(gym.Env):
 
 
         observation = self._get_obs()
+        info = observation
 
         if self.render_mode == "human":
             self._render_frame()
 
-        return observation, reward, terminated, False
+        return observation, reward, terminated, False, info
 
     def render(self):
         if self.render_mode == "rgb_array":
