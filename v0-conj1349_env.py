@@ -121,13 +121,13 @@ class conj1349env(gym.Env):
         if self.render_mode == "rgb_array":
             return self._render_frame()
 
-    def _render_frame(self,canvas):
+    def _render_frame(self):
         self.graph = nx.from_numpy_array(np.array(self._matrix_location))
         plt.clf()
         pos = nx.circular_layout(self.graph)
         edge_colors = ['gray']
         nx.draw(self.graph, pos, with_labels=True, node_color='lightblue', edge_color=edge_colors, node_size=500, font_size=10)
-        canvas.draw()
+        #canvas.draw()
 
 if __name__ == "__main__":
     env = gym.make('conj1349-v0', render_mode = 'human')
