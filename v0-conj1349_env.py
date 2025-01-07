@@ -181,7 +181,7 @@ class conj1349env(gym.Env):
         #    self.window_size / self.size
         #)  # The size of a single grid square in pixels
 
-        graph = nx.from_numpy_array(self._matrix_location)
+        graph = nx.from_numpy_array(np.array(self._matrix_location))
 
         plt.clf()
         pos = nx.circular_layout(graph)
