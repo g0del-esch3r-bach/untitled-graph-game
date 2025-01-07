@@ -19,7 +19,7 @@ register(
 
 
 N = 5
-C = 0.99
+C = 0.999
 
 class Actions(Enum):
     delete = 0
