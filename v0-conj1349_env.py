@@ -71,16 +71,6 @@ class conj1349env(gym.Env):
     def _get_obs(self):
         return {"agent": self._agent_location, "matrix": self._matrix_location}
 
-    """def _get_obs(self):
-        return {"agent": self._agent_location, "target": self._target_location}
-
-    def _get_info(self):
-        return {
-            "distance": np.linalg.norm(
-                self._agent_location - self._target_location, ord=1
-            )
-        }"""
-
     def reset(self, seed=None, options=None, nodes=N):
         self._agent_location = 0
         self._matrix_location = []
@@ -94,25 +84,6 @@ class conj1349env(gym.Env):
             self._matrix_location.append(r)
 
         observation = self._get_obs()
-
-        """
-        # We need the following line to seed self.np_random
-        super().reset(seed=seed)
-
-        # Choose the agent's location uniformly at random
-        self._agent_location = self.np_random.integers(0, self.size, size=2, dtype=int)
-
-        # We will sample the target's location randomly until it does not
-        # coincide with the agent's location
-        self._target_location = self._agent_location
-        while np.array_equal(self._target_location, self._agent_location):
-            self._target_location = self.np_random.integers(
-                0, self.size, size=2, dtype=int
-            )
-
-        observation = self._get_obs()
-        info = self._get_info()
-        """
 
         if self.render_mode == "human":
             self._render_frame()
@@ -130,10 +101,10 @@ class conj1349env(gym.Env):
 
         self.graph = nx.from_numpy_array(self._matrix_location)
 
-        if nx.is_connected(graph):
+        if nx.is_connected(self.graph):
             alpha = 0.99*(nodes+1)/(nodes+4)
-            avglen = nx.average_shortest_path_length(graph)
-            edges = graph.number_of_edges()
+            avglen = nx.average_shortest_path_length(self.graph)
+            edges = self.graph.number_of_edges()
             reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
         else:
             reward = -6
@@ -145,25 +116,6 @@ class conj1349env(gym.Env):
             self._render_frame()
 
         return observation, reward, terminated, False
-
-        """        
-        # Map the action (element of {0,1,2,3}) to the direction we walk in
-        direction = self._action_to_direction[action]
-        # We use `np.clip` to make sure we don't leave the grid
-        self._agent_location = np.clip(
-            self._agent_location + direction, 0, self.size - 1
-        )
-        # An episode is done iff the agent has reached the target
-        terminated = np.array_equal(self._agent_location, self._target_location)
-        reward = 1 if terminated else 0  # Binary sparse rewards
-        observation = self._get_obs()
-        info = self._get_info()
-
-        if self.render_mode == "human":
-            self._render_frame()
-
-        return observation, reward, terminated, False, info
-        """
 
     def render(self):
         if self.render_mode == "rgb_array":
