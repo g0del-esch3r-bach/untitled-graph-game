@@ -99,7 +99,7 @@ class conj1349env(gym.Env):
 
         terminated = (self._agent_location == math.floor(0.5 * nodes * (nodes - 1)) - 1)
 
-        self.graph = nx.from_numpy_array(self._matrix_location)
+        self.graph = nx.from_numpy_array(np.array(self._matrix_location))
 
         if nx.is_connected(self.graph):
             alpha = 0.99*(nodes+1)/(nodes+4)
@@ -122,6 +122,7 @@ class conj1349env(gym.Env):
             return self._render_frame()
 
     def _render_frame(self):
+        self.graph = nx.from_numpy_array(np.array(self._matrix_location))
         plt.clf()
         pos = nx.circular_layout(self.graph)
         edge_colors = ['gray']
