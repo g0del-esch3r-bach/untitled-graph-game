@@ -109,7 +109,8 @@ class conj1349env(gym.Env):
         self.graph = nx.from_numpy_array(np.array(self._matrix_location))
 
         if nx.is_connected(self.graph):
-            alpha = 0.99*(nodes+1)/(nodes+4)
+            #alpha = 0.09*(nodes+1)/(nodes+4)
+            alpha = 0
             avglen = nx.average_shortest_path_length(self.graph)
             edges = self.graph.number_of_edges()
             reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
@@ -130,12 +131,15 @@ class conj1349env(gym.Env):
             return self._render_frame()
 
     def _render_frame(self):
-        self.graph = nx.from_numpy_array(np.array(self._matrix_location))
-        #plt.clf()
-        pos = nx.circular_layout(self.graph)
-        edge_colors = ['gray']
-        nx.draw(self.graph, pos, with_labels=True, node_color='lightblue', edge_color=edge_colors, node_size=500, font_size=10)
-        #canvas.draw()
+        print('NEW EPISODE')
+        for i in range(0, N):
+            for j in range(0, N):
+                print(self._matrix_location[i][j], end=' ')
+            print()
+        print()
+        print()
+        print()
+        print()
 
 if __name__ == "__main__":
     env = gym.make('conj1349-v0', render_mode = 'human')
