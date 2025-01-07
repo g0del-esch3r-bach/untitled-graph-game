@@ -130,12 +130,12 @@ class conj1349env(gym.Env):
             return self._render_frame()
 
     def _render_frame(self):
-        self.graph = nx.from_numpy_array(np.array(self._matrix_location))
-        #plt.clf()
-        pos = nx.circular_layout(self.graph)
-        edge_colors = ['gray']
-        nx.draw(self.graph, pos, with_labels=True, node_color='lightblue', edge_color=edge_colors, node_size=500, font_size=10)
-        #canvas.draw()
+        print('NEW EPISODE')
+        for i in range(0, N):
+            for j in range(0, N):
+                print(self._matrix_location[i][j], end=' ')
+            print()
+        print()
 
 if __name__ == "__main__":
     env = gym.make('conj1349-v0', render_mode = 'human')
