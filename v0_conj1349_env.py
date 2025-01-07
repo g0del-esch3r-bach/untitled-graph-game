@@ -19,6 +19,7 @@ register(
 
 
 N = 5
+C = 0.99
 
 class Actions(Enum):
     delete = 0
@@ -109,8 +110,7 @@ class conj1349env(gym.Env):
         self.graph = nx.from_numpy_array(np.array(self._matrix_location))
 
         if nx.is_connected(self.graph):
-            #alpha = 0.09*(nodes+1)/(nodes+4)
-            alpha = 0
+            alpha = C*(nodes+1)/(nodes+4)
             avglen = nx.average_shortest_path_length(self.graph)
             edges = self.graph.number_of_edges()
             reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
