@@ -99,8 +99,8 @@ class conj1349env(gym.Env):
         k = self._agent_location
         l = math.floor(0.5 + math.sqrt(2*k + 0.25))
         m = k - math.floor(0.5*l*(l-1))
-        self._matrix_location[l][m] = self._action_to_direction[action]
-        self._matrix_location[m][l] = self._action_to_direction[action]
+        self._matrix_location[l][m] = self._action_to_direction[int(action)]
+        self._matrix_location[m][l] = self._action_to_direction[int(action)]
 
         self._agent_location = self._agent_location + 1
 

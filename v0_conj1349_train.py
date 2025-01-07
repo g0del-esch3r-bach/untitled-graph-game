@@ -40,10 +40,10 @@ def train_sb3():
 # Test using StableBaseline3. Lots of hardcoding for simplicity.
 def test_sb3(render=True):
 
-    env = gym.make('warehouse-robot-v0', render_mode='human' if render else None)
+    env = gym.make('conj1349-v0', render_mode='human' if render else None)
 
     # Load model
-    model = A2C.load('models/a2c_2000', env=env)
+    model = A2C.load('models/a2c_12000', env=env)
 
     # Run a test
     obs = env.reset()[0]
@@ -56,11 +56,5 @@ def test_sb3(render=True):
             break
 
 if __name__ == '__main__':
-
-    # Train/test using Q-Learning
-    # run_q(1000, is_training=True, render=False)
-    # run_q(1, is_training=False, render=True)
-
-    # Train/test using StableBaseline3
-    # train_sb3()
-    train_sb3()
+    #train_sb3()
+    test_sb3()
