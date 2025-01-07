@@ -43,7 +43,7 @@ def test_sb3(render=True):
     env = gym.make('conj1349-v0', render_mode='human' if render else None)
 
     # Load model
-    model = A2C.load('models/a2c_2000', env=env)
+    model = A2C.load('models/a2c_50000', env=env)
 
     # Run a test
     obs = env.reset()[0]
