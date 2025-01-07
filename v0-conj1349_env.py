@@ -72,6 +72,7 @@ class conj1349env(gym.Env):
         return {"agent": self._agent_location, "matrix": self._matrix_location}
 
     def reset(self, seed=None, options=None, nodes=N):
+        super().reset(seed=seed)
         self._agent_location = 0
         self._matrix_location = []
         for i in range(nodes):
@@ -84,11 +85,12 @@ class conj1349env(gym.Env):
             self._matrix_location.append(r)
 
         observation = self._get_obs()
+        info = observation
 
         if self.render_mode == "human":
             self._render_frame()
 
-        return observation
+        return observation, info
 
     def step(self, action, nodes=N):
         k = self._agent_location
