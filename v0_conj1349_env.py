@@ -14,7 +14,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 register(
     id = "conj1349-v0",
-    entry_point = "v0-conj1349_env:conj1349env",
+    entry_point = "v0_conj1349_env:conj1349env",
 )
 
 
