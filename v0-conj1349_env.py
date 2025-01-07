@@ -123,7 +123,7 @@ class conj1349env(gym.Env):
 
     def _render_frame(self):
         self.graph = nx.from_numpy_array(np.array(self._matrix_location))
-        plt.clf()
+        #plt.clf()
         pos = nx.circular_layout(self.graph)
         edge_colors = ['gray']
         nx.draw(self.graph, pos, with_labels=True, node_color='lightblue', edge_color=edge_colors, node_size=500, font_size=10)
