@@ -3,12 +3,14 @@ import gymnasium as gym # type: ignore
 from gymnasium import spaces # type: ignore
 from gymnasium.envs.registration import register
 from gymnasium.utils.env_checker import check_env
-import pygame # type: ignore
+#import pygame # type: ignore
 import math
 import networkx as nx # type: ignore
 import numpy as np # type: ignore
-import matplotlib.pyplot as plt #type: ignore
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg #type: ignore
+import tkinter as tk
+from tkinter import ttk, messagebox
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 register(
     id = "conj1349-v0",
@@ -168,6 +170,7 @@ class conj1349env(gym.Env):
             return self._render_frame()
 
     def _render_frame(self):
+        """
         if self.window is None and self.render_mode == "human":
             pygame.init()
             pygame.display.init()
@@ -196,7 +199,7 @@ class conj1349env(gym.Env):
         canvas.draw()
 
 
-        """
+        
         # First we draw the target
         pygame.draw.rect(
             canvas,
