@@ -137,6 +137,9 @@ class conj1349env(gym.Env):
                 print(self._matrix_location[i][j], end=' ')
             print()
         print()
+        print()
+        print()
+        print()
 
 if __name__ == "__main__":
     env = gym.make('conj1349-v0', render_mode = 'human')
