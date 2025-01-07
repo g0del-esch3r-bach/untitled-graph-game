@@ -128,7 +128,7 @@ class conj1349env(gym.Env):
 
         terminated = (self._agent_location == math.floor(0.5 * nodes * (nodes - 1)) - 1)
 
-        graph = nx.from_numpy_array(self._matrix_location)
+        self.graph = nx.from_numpy_array(self._matrix_location)
 
         if nx.is_connected(graph):
             alpha = 0.99*(nodes+1)/(nodes+4)
@@ -170,6 +170,11 @@ class conj1349env(gym.Env):
             return self._render_frame()
 
     def _render_frame(self):
+        plt.clf()
+        pos = nx.circular_layout(self.graph)
+        edge_colors = ['gray']
+        nx.draw(self.graph, pos, with_labels=True, node_color='lightblue', edge_color=edge_colors, node_size=500, font_size=10)
+        self.canvas.draw()
         """
         if self.window is None and self.render_mode == "human":
             pygame.init()
@@ -232,7 +237,7 @@ class conj1349env(gym.Env):
                 (pix_square_size * x, 0),
                 (pix_square_size * x, self.window_size),
                 width=3,
-            )"""
+            )
 
         if self.render_mode == "human":
             # The following line copies our drawings from `canvas` to the visible window
@@ -248,7 +253,7 @@ class conj1349env(gym.Env):
             return np.transpose(
                 np.array(pygame.surfarray.pixels3d(canvas)), axes=(1, 0, 2)
             )
-"""
+
     def close(self):
         if self.window is not None:
             pygame.display.quit()
