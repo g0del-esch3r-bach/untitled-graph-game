@@ -6,14 +6,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 import pickle
-from stable_baselines3 import A2C
+import stable_baselines3 # type: ignore
+from stable_baselines3 import A2C # type: ignore
 import os
 import v0_conj1349_env # Even though we don't use this class here, we should include it here so that it registers the WarehouseRobot environment.
 
 # Train or test using Q-Learning
 def run_q(episodes, is_training=True, render=False):
 
-    env = gym.make('warehouse-robot-v0', render_mode='human' if render else None)
+    env = gym.make('conj1349-v0', render_mode='human' if render else None)
 
     if(is_training):
         # If training, initialize the Q Table, a 5D vector: [robot_row_pos, robot_row_col, target_row_pos, target_col_pos, actions]
@@ -107,7 +108,7 @@ def train_sb3():
     os.makedirs(model_dir, exist_ok=True)
     os.makedirs(log_dir, exist_ok=True)
 
-    env = gym.make('warehouse-robot-v0')
+    env = gym.make('conj1349-v0')
 
     # Use Advantage Actor Critic (A2C) algorithm.
     # Use MlpPolicy for observation space 1D vector.
@@ -151,4 +152,4 @@ if __name__ == '__main__':
 
     # Train/test using StableBaseline3
     # train_sb3()
-    test_sb3()
+    train_sb3()
