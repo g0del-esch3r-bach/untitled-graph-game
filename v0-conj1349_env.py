@@ -70,6 +70,9 @@ class conj1349env(gym.Env):
 
     def _get_obs(self):
         return {"agent": self._agent_location, "matrix": self._matrix_location}
+    
+    def _get_info(self):
+        return {"rounds left": math.floor(0.5 * N * (N - 1)) - 1 - self._agent_location - 1}
 
     def reset(self, seed=None, options=None, nodes=N):
         super().reset(seed=seed)
@@ -85,7 +88,7 @@ class conj1349env(gym.Env):
             self._matrix_location.append(r)
 
         observation = self._get_obs()
-        info = observation
+        info = self._get_obs()
 
         if self.render_mode == "human":
             self._render_frame()
@@ -98,6 +101,8 @@ class conj1349env(gym.Env):
         m = k - math.floor(0.5*l*(l-1))
         self._matrix_location[l][m] = self._action_to_direction[action]
         self._matrix_location[m][l] = self._action_to_direction[action]
+
+        self._agent_location = self._agent_location + 1
 
         terminated = (self._agent_location == math.floor(0.5 * nodes * (nodes - 1)) - 1)
 
@@ -113,7 +118,7 @@ class conj1349env(gym.Env):
 
 
         observation = self._get_obs()
-        info = observation
+        info = self._get_info()
 
         if self.render_mode == "human":
             self._render_frame()
