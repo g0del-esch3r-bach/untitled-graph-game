@@ -56,5 +56,5 @@ def test_sb3(render=True):
             break
 
 if __name__ == '__main__':
-    #train_sb3()
-    test_sb3()
+    train_sb3()
+    #test_sb3()
