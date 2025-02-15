@@ -29,7 +29,7 @@ def train_sb3():
     # Start another cmd prompt and launch Tensorboard: tensorboard --logdir logs
     # Once Tensorboard is loaded, it will print a URL. Follow the URL to see the status of the training.
     # Stop the training when you're satisfied with the status.
-    TIMESTEPS = 1000
+    TIMESTEPS = 10000
     iters = 0
     while True:
         iters += 1
@@ -56,5 +56,5 @@ def test_sb3(render=True):
             break
 
 if __name__ == '__main__':
-    train_sb3()
-    #test_sb3()
+    #train_sb3()
+    test_sb3()
