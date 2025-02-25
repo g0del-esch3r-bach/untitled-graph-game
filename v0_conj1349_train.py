@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 import random
 import pickle
 import stable_baselines3 # type: ignore
-from stable_baselines3 import A2C # type: ignore
+from stable_baselines3 import PPO # type: ignore
 import os
 import v0_conj1349_env # Even though we don't use this class here, we should include it here so that it registers the WarehouseRobot environment.
 
-# Train using StableBaseline3. Lots of hardcoding for simplicity i.e. use of the A2C (Advantage Actor Critic) algorithm.
+# Train using StableBaseline3. Lots of hardcoding for simplicity i.e. use of the PPO (Advantage Actor Critic) algorithm.
 def train_sb3():
     # Where to store trained model and logs
     model_dir = "models"
@@ -21,9 +21,9 @@ def train_sb3():
 
     env = gym.make('conj1349-v0')
 
-    # Use Advantage Actor Critic (A2C) algorithm.
+    # Use PPO algorithm.
     # Use MlpPolicy for observation space 1D vector.
-    model = A2C('MultiInputPolicy', env, verbose=1, device='cuda', tensorboard_log=log_dir)
+    model = PPO('MultiInputPolicy', env, verbose=1, device='cuda', tensorboard_log=log_dir)
    
     # This loop will keep training until you stop it with Ctr-C.
     # Start another cmd prompt and launch Tensorboard: tensorboard --logdir logs
@@ -35,7 +35,7 @@ def train_sb3():
         iters += 1
 
         model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False) # train
-        model.save(f"{model_dir}/a2c_{TIMESTEPS*iters}") # Save a trained model every TIMESTEPS
+        model.save(f"{model_dir}/PPO_{TIMESTEPS*iters}") # Save a trained model every TIMESTEPS
 
 # Test using StableBaseline3. Lots of hardcoding for simplicity.
 def test_sb3(render=True):
@@ -43,7 +43,7 @@ def test_sb3(render=True):
     env = gym.make('conj1349-v0', render_mode='human' if render else None)
 
     # Load model
-    model = A2C.load('models/a2c_50000', env=env)
+    model = PPO.load('models/PPO_50000', env=env)
 
     # Run a test
     obs = env.reset()[0]

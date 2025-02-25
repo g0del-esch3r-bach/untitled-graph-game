@@ -19,7 +19,7 @@ register(
 
 
 N = 10
-C = 0.8
+C = 0.2
 
 class Actions(Enum):
     delete = 0
