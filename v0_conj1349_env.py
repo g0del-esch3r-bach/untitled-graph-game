@@ -18,8 +18,8 @@ register(
 )
 
 
-N = 10
-C = 0.2
+N = 4
+C = 0.3
 
 class Actions(Enum):
     delete = 0
@@ -132,6 +132,7 @@ class conj1349env(gym.Env):
 
     def _render_frame(self):
         print('NEW EPISODE')
+        print(N,C*(N+1)/(N+4))
         for i in range(0, N):
             for j in range(0, N):
                 print(self._matrix_location[i][j], end=' ')
