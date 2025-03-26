@@ -18,7 +18,7 @@ register(
 )
 
 
-N = 4
+N = 5
 C = 0.3
 
 class Actions(Enum):
@@ -115,7 +115,7 @@ class conj1349env(gym.Env):
             edges = self.graph.number_of_edges()
             reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
         else:
-            reward = -6
+            reward = -1000
 
 
         observation = self._get_obs()
