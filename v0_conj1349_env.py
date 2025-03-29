@@ -19,7 +19,7 @@ register(
 
 
 N = 5
-C = 0.3
+C = 0.1
 
 class Actions(Enum):
     delete = 0
@@ -113,9 +113,12 @@ class conj1349env(gym.Env):
             alpha = C*(nodes+1)/(nodes+4)
             avglen = nx.average_shortest_path_length(self.graph)
             edges = self.graph.number_of_edges()
-            reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
+            #reward = -edges
+            reward = -avglen
+            #reward = - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
+            #reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
         else:
-            reward = -1000
+            reward = -5000
 
 
         observation = self._get_obs()
