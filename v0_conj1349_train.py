@@ -43,7 +43,7 @@ def test_sb3(render=True):
     env = gym.make('conj1349-v0', render_mode='human' if render else None)
 
     # Load model
-    model = PPO.load('models/PPO_740000', env=env)
+    model = PPO.load('models/PPO_1000000', env=env)
 
     # Run a test
     obs = env.reset()[0]

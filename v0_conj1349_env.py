@@ -114,7 +114,7 @@ class conj1349env(gym.Env):
             avglen = nx.average_shortest_path_length(self.graph)
             edges = self.graph.number_of_edges()
             #reward = -edges
-            reward = -avglen
+            reward = avglen
             #reward = - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
             #reward = ((2*(nodes-2)*alpha/(nodes+1)+1)*(2/nodes)) - (3*alpha*avglen/(nodes+1)) - (2*(1-alpha)*edges/nodes/(nodes-1))
         else:
