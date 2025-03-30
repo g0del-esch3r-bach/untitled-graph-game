@@ -18,7 +18,7 @@ register(
 )
 
 
-N = 5
+N = 4
 C = 0.1
 
 class Actions(Enum):
