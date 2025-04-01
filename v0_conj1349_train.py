@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 import random
 import pickle
 import stable_baselines3 # type: ignore
-from stable_baselines3 import PPO # type: ignore
+from stable_baselines3 import DQN # type: ignore
 import os
 import v0_conj1349_env # Even though we don't use this class here, we should include it here so that it registers the WarehouseRobot environment.
 
-# Train using StableBaseline3. Lots of hardcoding for simplicity i.e. use of the PPO (Advantage Actor Critic) algorithm.
+# Train using StableBaseline3. Lots of hardcoding for simplicity i.e. use of the DQN (DQN) algorithm.
 def train_sb3():
     # Where to store trained model and logs
     model_dir = "models"
@@ -21,9 +21,9 @@ def train_sb3():
 
     env = gym.make('conj1349-v0')
 
-    # Use PPO algorithm.
+    # Use DQN algorithm.
     # Use MlpPolicy for observation space 1D vector.
-    model = PPO('MultiInputPolicy', env, verbose=1, device='cuda', tensorboard_log=log_dir)
+    model = DQN('MultiInputPolicy', env, verbose=1, device='cuda', tensorboard_log=log_dir)
    
     # This loop will keep training until you stop it with Ctr-C.
     # Start another cmd prompt and launch Tensorboard: tensorboard --logdir logs
@@ -35,7 +35,7 @@ def train_sb3():
         iters += 1
 
         model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False) # train
-        model.save(f"{model_dir}/PPO_{TIMESTEPS*iters}") # Save a trained model every TIMESTEPS
+        model.save(f"{model_dir}/DQN_{TIMESTEPS*iters}") # Save a trained model every TIMESTEPS
 
 # Test using StableBaseline3. Lots of hardcoding for simplicity.
 def test_sb3(render=True):
@@ -43,7 +43,7 @@ def test_sb3(render=True):
     env = gym.make('conj1349-v0', render_mode='human' if render else None)
 
     # Load model
-    model = PPO.load('models/PPO_1000000', env=env)
+    model = DQN.load('models/DQN_1000000', env=env)
 
     # Run a test
     obs = env.reset()[0]
